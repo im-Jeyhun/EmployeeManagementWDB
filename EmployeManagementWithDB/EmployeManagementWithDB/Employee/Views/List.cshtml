@@ -1,0 +1,39 @@
+﻿@model List<ListViewModel>
+
+<table class="table">
+   <a asp-route="employee-add" target="_blank" class="btn btn-secondary">Add new employee</a>
+
+    <thead>
+        <tr>
+            <th scope="col">Employee Code</th>
+            <th scope="col">Name</th>
+            <th scope="col">Surname</th>
+            <th scope="col">FatherName</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var empmodel in Model)
+        {
+            @if (empmodel.IsDeleted == false)
+            {
+
+                <tr>
+                    <th scope="row">@empmodel.EmpCode</th>
+                    <td>@empmodel.Name</td>
+                    <td>@empmodel.Surname</td>
+                    <td>@empmodel.Fathername</td>
+                    <td>
+
+                    <a asp-route="employee-delete" asp-route-empcode="@empmodel.EmpCode" class="btn btn-secondary">Delete</a>
+                    <a asp-route="employee-update-empcode"  asp-route-empcode="@empmodel.EmpCode" target="_blank" class="btn btn-secondary">Update</a>
+
+                    </td>
+
+
+                </tr>
+            }
+        }
+
+
+    </tbody>
+</table>
