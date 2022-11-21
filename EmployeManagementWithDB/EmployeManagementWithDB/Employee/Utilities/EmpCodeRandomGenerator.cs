@@ -1,8 +1,8 @@
 ﻿using EmployeManagementWithDB.DataBase.Repository.Common;
 
-namespace EmployeManagementWithDB.DataBase
+namespace EmployeManagementWithDB.Employee.Utilities
 {
-    public class TablePkAutoRandomGenerator
+    public class EmpCodeRandomGenerator
     {
         static Random randomCode = new Random();
 

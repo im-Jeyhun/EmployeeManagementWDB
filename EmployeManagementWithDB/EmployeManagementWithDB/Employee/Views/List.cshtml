@@ -14,8 +14,7 @@
     <tbody>
         @foreach (var empmodel in Model)
         {
-            @if (empmodel.IsDeleted == false)
-            {
+         
 
                 <tr>
                     <th scope="row">@empmodel.EmpCode</th>
@@ -31,7 +30,7 @@
 
 
                 </tr>
-            }
+            
         }
 
 

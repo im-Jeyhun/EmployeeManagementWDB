@@ -1,6 +1,6 @@
-﻿using EmployeManagementWithDB.DataBase;
-using EmployeManagementWithDB.DataBase.Repository.Common;
+﻿using EmployeManagementWithDB.DataBase.Repository.Common;
 using EmployeManagementWithDB.Employee.Models;
+using EmployeManagementWithDB.Employee.Utilities;
 using EmployeManagementWithDB.Employee.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,7 +29,7 @@ namespace EmployeManagementWithDB.Employee.Controllers
             {
 
 
-                EmpCode = TablePkAutoRandomGenerator.RandomEmpCode,
+                EmpCode = EmpCodeRandomGenerator.RandomEmpCode,
 
                 Name = admodel.Name,
                 Surname = admodel.Surname,
@@ -51,11 +51,12 @@ namespace EmployeManagementWithDB.Employee.Controllers
             using DataContext dbContext = new DataContext();
 
 
-            var model = dbContext.Employees
+            var model = dbContext.Employees.Where(e => !e.IsDeleted)
                 .Select(e => new ListViewModel(e.EmpCode, e.Name, e.Surname, e.Fathername, e.IsDeleted))
                 .ToList();
 
             return View("~/Employee/Views/List.cshtml", model);
+                    
         }
 
 
